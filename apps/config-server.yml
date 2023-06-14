@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-app
+  name: config-server
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: default
-    name: in-cluster
+    namespace: config-server
+    server: https://kubernetes.default.svc
   project: default
   source:
-    path: apps
-    repoURL: https://github.com/argoproj/argocd-example-apps
+    path: config-server
+    repoURL: https://github.com/nxt-arc/app-configs
     targetRevision: HEAD
